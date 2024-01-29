@@ -7,8 +7,10 @@ function OrderPage({ username, setUsername }) {
 
   return (
     <>
-      <h1>Bienvenue {username}</h1>
-      <button onClick={handleClick}>Déconnexion</button>
+      <main>
+        <h1>Bienvenue {username}</h1>
+        <button onClick={handleClick}>Déconnexion</button>
+      </main>
     </>
   );
 }

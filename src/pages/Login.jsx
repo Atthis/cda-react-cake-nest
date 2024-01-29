@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Login({ username, setUsername }) {
-  const [inputValue, setInputValue] = useState('');
+  const navigateTo = useNavigate();
 
   function handleChange(e) {
     e.preventDefault();
-
     setUsername(e.target.value);
   }
 
   function handleSubmit() {
-    setUsername('');
-    alert(`Bonjour ${username}`);
+    navigateTo('/commandes');
   }
 
   return (
