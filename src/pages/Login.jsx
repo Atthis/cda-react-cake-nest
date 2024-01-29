@@ -9,12 +9,17 @@ function Login({ username, setUsername }) {
     setUsername(e.target.value);
   }
 
+  function handleSubmit() {
+    setUsername('');
+    alert(`Bonjour ${username}`);
+  }
+
   return (
     <>
       <h1>Bienvenue chez nous !</h1>
-      <p>Connectez-vous</p>
-      <form onSubmit={setUsername}>
-        <input type='text' name='username' id='username' value={username} onChange={handleChange} />
+      <h2>Connectez-vous</h2>
+      <form onSubmit={handleSubmit}>
+        <input type='text' name='username' id='username' value={username} placeholder='Entrez votre prénom...' onChange={handleChange} required autoComplete='name' />
         <button>Accédez à votre espace</button>
       </form>
     </>

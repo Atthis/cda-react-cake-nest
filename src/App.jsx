@@ -8,7 +8,6 @@ function App() {
     <>
       <main>
         <Login username={username} setUsername={setUsername} />
-        <p>{username}</p>
       </main>
     </>
   );
