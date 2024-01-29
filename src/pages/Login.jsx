@@ -19,7 +19,7 @@ function Login({ username, setUsername }) {
       <h1>Bienvenue chez nous !</h1>
       <h2>Connectez-vous</h2>
       <form onSubmit={handleSubmit}>
-        <input type='text' name='username' id='username' value={username} placeholder='Entrez votre prénom...' onChange={handleChange} required />
+        <input type='text' name='username' id='username' value={username} placeholder='Entrez votre prénom...' onChange={handleChange} required autoComplete='name' />
         <button>Accédez à votre espace</button>
       </form>
     </>
