@@ -5,7 +5,7 @@
 This project has been created during a web developper course.
 I have worked on a professionnal like context :
 
-- use a kanban and tickets to structure features
+- use a kanban and tickets to structure features : [tableau Kanban](https://tree.taiga.io/project/cedric_b-cake-nest/kanban)
 - create PRs for each tickets
 - deploy on a web service (Vercel)
 
