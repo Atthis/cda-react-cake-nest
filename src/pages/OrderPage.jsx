@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function OrderPage({ username, setUsername }) {
   function handleClick() {
@@ -9,7 +10,9 @@ function OrderPage({ username, setUsername }) {
     <>
       <main>
         <h1>Bienvenue {username}</h1>
-        <button onClick={handleClick}>Déconnexion</button>
+        <Link to='/' onClick={handleClick}>
+          Déconnexion
+        </Link>
       </main>
     </>
   );
