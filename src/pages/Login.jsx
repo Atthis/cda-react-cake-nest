@@ -12,7 +12,7 @@ function Login({ username, setUsername }) {
   return (
     <>
       <h1>Bienvenue chez nous !</h1>
-      <p>Connectez-vous</p>
+      <h2>Connectez-vous</h2>
       <form onSubmit={setUsername}>
         <input type='text' name='username' id='username' value={username} onChange={handleChange} />
         <button>Accédez à votre espace</button>
