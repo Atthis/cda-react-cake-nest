@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { theme } from '../../utils/index.js';
 import Wrapper from '../../components/Wrapper';
 import NavBar from '../../components/NavBar';
-import MainContent from './MainContent.jsx';
+import Menu from './Menu.jsx';
 
 const ShopPageStyled = styled.div`
   display: flex;
@@ -22,7 +22,7 @@ function ShopPage() {
     <Wrapper bgImg={theme.colors.primary}>
       <ShopPageStyled>
         <NavBar />
-        <MainContent />
+        <Menu />
       </ShopPageStyled>
     </Wrapper>
   );
