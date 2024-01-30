@@ -18,7 +18,7 @@ function Menu() {
   return (
     <MenuStyled>
       {fakeSmallMenu.map(item => (
-        <ItemCard key={new Date().getTime() + item.id} />
+        <ItemCard key={new Date().getTime() + item.id} item={item} />
       ))}
     </MenuStyled>
   );
