@@ -1,10 +1,10 @@
 import React from 'react';
-import LoginForm from '../components/LoginForm';
 import styled from 'styled-components';
 import { theme } from '../assets/index.js';
+import LoginForm from '../components/LoginForm';
+import Logo from '../components/partials/Logo.jsx';
 
 import bgImg from '../assets/imgs/tarts.jpg';
-import logo from '../assets/imgs/cupcake.png';
 
 const Wrapper = styled.main`
   width: 100%;
@@ -46,30 +46,12 @@ const Wrapper = styled.main`
   }
 `;
 
-const Logo = styled.p`
-  margin-block: ${theme.spacing.md};
-
-  font-weight: 900;
-  font-size: ${theme.fonts.size.P5};
-  color: ${theme.colors.primary};
-  text-transform: uppercase;
-
-  img {
-    position: relative;
-    bottom: -15px;
-    width: 75px;
-  }
-`;
-
 function Login({ username, setUsername }) {
   return (
     <Wrapper>
       <div>
         <section>
-          <Logo>
-            cake <img src={logo} alt='' />
-            nest
-          </Logo>
+          <Logo />
           <h1>Bienvenue chez nous !</h1>
         </section>
         <section>
