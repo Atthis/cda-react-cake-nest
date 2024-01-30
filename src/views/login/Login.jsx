@@ -1,21 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import { theme } from '../assets/index.js';
-import LoginForm from '../components/LoginForm';
-import Logo from '../components/partials/Logo.jsx';
+import { theme } from '../../utils/index.js';
+import LoginForm from './LoginForm.jsx';
+import Logo from '../../components/Logo.jsx';
+import Wrapper from '../../components/Wrapper.jsx';
 
-import bgImg from '../assets/imgs/tarts.jpg';
+import bgImg from '../../assets/imgs/tarts.jpg';
 
-const Wrapper = styled.main`
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${bgImg});
-  background-position: center;
-
-  font-family: 'Open Sans', sans-serif;
+const LoginStyled = styled.div`
   color: ${theme.colors.white};
   text-align: center;
 
@@ -46,19 +38,19 @@ const Wrapper = styled.main`
   }
 `;
 
-function Login({ username, setUsername }) {
+function Login() {
   return (
-    <Wrapper>
-      <div>
+    <Wrapper bgImg={`linear-gradient(rgba(0, 0, 0, 0.4), rgba(56, 34, 34, 0.4)), url(${bgImg});`}>
+      <LoginStyled>
         <section>
-          <Logo />
+          <Logo fontSize={theme.fonts.size.P5} />
           <h1>Bienvenue chez nous !</h1>
         </section>
         <section>
           <h2>Connectez-vous</h2>
-          <LoginForm username={username} setUsername={setUsername} />
+          <LoginForm />
         </section>
-      </div>
+      </LoginStyled>
     </Wrapper>
   );
 }

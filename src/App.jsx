@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useState, createContext } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import Login from './pages/Login';
-import OrderPage from './pages/OrderPage';
-import Error404 from './pages/Error404';
+import Login from './views/login/Login';
+import ShopPage from './views/shopPage/ShopPage';
+import Error404 from './views/error404/Error404';
+
+export const UserContext = createContext('');
 
 function App() {
   // Data
@@ -11,13 +13,15 @@ function App() {
 
   return (
     <>
-      <Router>
-        <Routes>
-          <Route path='/' element={<Login username={username} setUsername={setUsername} />} />
-          <Route path='/commandes' element={<OrderPage username={username} setUsername={setUsername} />} />
-          <Route path='/*' element={<Error404 />} />
-        </Routes>
-      </Router>
+      <UserContext.Provider value={{ username, setUsername }}>
+        <Router>
+          <Routes>
+            <Route path='/' element={<Login username={username} setUsername={setUsername} />} />
+            <Route path='/commandes' element={<ShopPage username={username} setUsername={setUsername} />} />
+            <Route path='/*' element={<Error404 />} />
+          </Routes>
+        </Router>
+      </UserContext.Provider>
     </>
   );
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { theme } from '../../assets';
+import { theme } from '../utils';
 import { BsPersonCircle } from 'react-icons/bs';
 
 const InputStyled = styled.div`
