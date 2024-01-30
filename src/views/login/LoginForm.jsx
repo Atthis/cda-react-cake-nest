@@ -1,8 +1,11 @@
 import React from 'react';
+import { useContext } from 'react';
+
 import { useNavigate } from 'react-router-dom';
-import Input from './partials/Input';
+import Input from '../../components/Input';
 import styled from 'styled-components';
-import { theme } from '../assets';
+import { theme } from '../../utils';
+import { UserContext } from '../../App.jsx';
 
 import { BsChevronRight } from 'react-icons/bs';
 
@@ -36,7 +39,8 @@ const Form = styled.form`
   }
 `;
 
-function LoginForm({ setUsername }) {
+function LoginForm() {
+  const { setUsername } = useContext(UserContext);
   const navigateTo = useNavigate();
 
   function handleSubmit(e) {
