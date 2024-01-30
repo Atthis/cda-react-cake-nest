@@ -61,8 +61,6 @@ const Logo = styled.p`
   }
 `;
 
-// BsPersonCircle
-
 function Login({ username, setUsername }) {
   return (
     <Wrapper>
