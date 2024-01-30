@@ -9,7 +9,7 @@ const ShopPageStyled = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin: ${theme.spacing.xl};
+  margin: ${theme.spacing.lg};
 
   background-color: ${theme.colors.white};
   border-radius: ${theme.borderRadius.extraRound};

@@ -10,15 +10,17 @@ const MenuStyled = styled.main`
 
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 
   box-shadow: inset 0px 0px 10px 5px hsla(0, 0%, 15%, 0.3);
+  overflow-y: scroll;
 `;
 
 function Menu() {
   return (
     <MenuStyled>
-      {fakeSmallMenu.map(item => (
-        <ItemCard key={new Date().getTime() + item.id} item={item} />
+      {fakeMenu.map(item => (
+        <ItemCard key={new Date().getTime() + item.id} item={item} className='menuItem' />
       ))}
     </MenuStyled>
   );
