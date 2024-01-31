@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { theme } from '../utils';
 import { AdminContext } from '../views/shopPage/ShopPage';
+import { toast } from 'react-toastify';
 
 const AdminToggleStyled = styled.button`
   position: relative;
@@ -13,11 +14,14 @@ const AdminToggleStyled = styled.button`
   padding-inline: ${theme.spacing.sm};
   border-width: 3px;
   border-style: solid;
-  border-radius: 40px;
+  border-radius: 50px;
 
   font-size: ${theme.fonts.size.XXS};
+  font-weight: 700;
   text-transform: uppercase;
   transition: all 0.5s ease-in-out;
+
+  cursor: pointer;
 
   .toggle-thumb {
     position: absolute;
@@ -36,7 +40,7 @@ const AdminToggleStyled = styled.button`
       justify-content: flex-start;
       background-color: white;
       border-color: ${theme.colors.primary};
-      color: black;
+      color: ${theme.colors.primary};
       
       
       .toggle-thumb {
@@ -48,7 +52,7 @@ const AdminToggleStyled = styled.button`
       justify-content: flex-end;
     background-color: black;
     border-color: transparent;
-    color: ${theme.colors.primary};
+    color: ${theme.colors.white};
     
     .toggle-thumb {
       left: ${theme.spacing.xxs}
@@ -59,13 +63,19 @@ const AdminToggleStyled = styled.button`
 function AdminToggle() {
   const { isAdmin, setIsAdmin } = useContext(AdminContext);
 
+  const adminNotify = () => toast.info('Mode Admin actif');
+
   function handleClick() {
-    isAdmin ? setIsAdmin(false) : setIsAdmin(true);
+    if (isAdmin) setIsAdmin(false);
+    else {
+      setIsAdmin(true);
+      adminNotify();
+    }
   }
 
   return (
     <AdminToggleStyled onClick={handleClick} $isAdmin={isAdmin}>
-      <div className='toggle-thumb'></div>
+      <span className='toggle-thumb'></span>
       {isAdmin ? 'Mode admin activé' : 'Activer le mode Admin'}
     </AdminToggleStyled>
   );
