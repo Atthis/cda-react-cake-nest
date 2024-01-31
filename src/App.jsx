@@ -1,6 +1,8 @@
 import { useState, createContext } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
+import 'react-toastify/dist/ReactToastify.min.css';
+
 import Login from './views/login/Login';
 import ShopPage from './views/shopPage/ShopPage';
 import Error404 from './views/error404/Error404';

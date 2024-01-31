@@ -5,10 +5,14 @@ import { theme } from '../../utils/index.js';
 import Wrapper from '../../components/Wrapper';
 import NavBar from '../../components/NavBar';
 import Menu from './Menu.jsx';
+import { ToastContainer } from 'react-toastify';
 
 export const AdminContext = createContext(null);
 
 const ShopPageStyled = styled.div`
+  --toastify-icon-color-info: ${theme.colors.green};
+  --toastify-color-progress-info: ${theme.colors.green};
+
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -27,6 +31,7 @@ function ShopPage() {
     <AdminContext.Provider value={{ isAdmin, setIsAdmin }}>
       <Wrapper bgImg={theme.colors.primary}>
         <ShopPageStyled>
+          <ToastContainer role='alert' position='bottom-right' autoClose={1500} theme='light' closeOnClick />
           <NavBar />
           <Menu />
         </ShopPageStyled>
