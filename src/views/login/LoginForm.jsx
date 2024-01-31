@@ -6,6 +6,7 @@ import Input from '../../components/Input';
 import styled from 'styled-components';
 import { theme } from '../../utils';
 import { UserContext } from '../../App.jsx';
+import ButtonBasic from '../../components/ButtonBasic.jsx';
 
 import { BsChevronRight } from 'react-icons/bs';
 
@@ -52,9 +53,7 @@ function LoginForm() {
   return (
     <Form onSubmit={handleSubmit}>
       <Input />
-      <button>
-        Mon espace <BsChevronRight className='btn-icon' />
-      </button>
+      <ButtonBasic label={'Mon espace'} icon={<BsChevronRight className='btn-icon' />} fontSize={theme.fonts.size.P3} width={'100%'} />
     </Form>
   );
 }
