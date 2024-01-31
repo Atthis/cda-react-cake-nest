@@ -7,6 +7,8 @@ import { reloadPage } from '../utils/window.js';
 const LogoStyled = styled.p`
   margin-block: 0.3em;
 
+  margin-inline: ${props => (props.$isAlignLeft ? '0 auto' : 'auto' || 'auto')};
+
   font-weight: 900;
   font-size: ${props => props.$fontSize || theme.fonts.size.P5};
   color: ${theme.colors.primary};
@@ -20,9 +22,9 @@ const LogoStyled = styled.p`
   }
 `;
 
-function Logo({ fontSize }) {
+function Logo({ fontSize, isAlignLeft }) {
   return (
-    <LogoStyled $fontSize={fontSize} onClick={reloadPage}>
+    <LogoStyled $fontSize={fontSize} $isAlignLeft={isAlignLeft} onClick={reloadPage}>
       cake <img src={logo} alt='' />
       nest
     </LogoStyled>
