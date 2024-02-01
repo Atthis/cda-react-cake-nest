@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { theme } from '../utils';
-import { BsPersonCircle } from 'react-icons/bs';
 
 const InputStyled = styled.div`
   --input-height: 50px;
@@ -31,11 +30,11 @@ const InputStyled = styled.div`
   }
 `;
 
-function Input() {
+function Input({ icon, type, name, placeholder, required, autoComplete }) {
   return (
     <InputStyled>
-      <BsPersonCircle className='input-icon' />
-      <input type='text' name='username' id='username' placeholder='Entrez votre prénom...' required autoComplete='name' />
+      {icon && icon}
+      <input type={type} name={name} id={name} placeholder={placeholder} required={required} autoComplete={autoComplete} />
     </InputStyled>
   );
 }

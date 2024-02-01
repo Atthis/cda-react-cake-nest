@@ -25,6 +25,7 @@ const ShopPageStyled = styled.div`
 `;
 
 function ShopPage() {
+  // REPASSER isAdmin A FALSE POUR LA "PROD"
   const [isAdmin, setIsAdmin] = useState(true);
 
   return (
