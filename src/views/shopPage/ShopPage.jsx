@@ -25,7 +25,7 @@ const ShopPageStyled = styled.div`
 `;
 
 function ShopPage() {
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(true);
 
   return (
     <AdminContext.Provider value={{ isAdmin, setIsAdmin }}>

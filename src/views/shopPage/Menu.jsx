@@ -1,28 +1,37 @@
-import React from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import styled from 'styled-components';
-import { theme } from '../../utils';
 import ItemCard from '../../components/ItemCard';
+import { AdminContext } from './ShopPage';
 
-import { fakeSmallMenu, fakeMenu } from '../../../fakeData/fakeMenu';
+import { fakeMenu } from '../../../fakeData/fakeMenu';
+import AdminPanel from './admin/AdminPanel';
+
+export const AdminPanelContext = createContext(null);
 
 const MenuStyled = styled.main`
   flex: 1;
+  box-shadow: inset 0px 0px 10px 5px hsla(0, 0%, 15%, 0.3);
 
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-
-  box-shadow: inset 0px 0px 10px 5px hsla(0, 0%, 15%, 0.3);
   overflow-y: scroll;
 `;
 
 function Menu() {
+  const { isAdmin } = useContext(AdminContext);
+  const [adminPanelState, setAdminPanelState] = useState({ isCollapsed: false, formType: 'add' });
+
   return (
-    <MenuStyled>
-      {fakeMenu.map(item => (
-        <ItemCard key={new Date().getTime() + item.id} item={item} className='menuItem' />
-      ))}
-    </MenuStyled>
+    <AdminPanelContext.Provider value={{ adminPanelState, setAdminPanelState }}>
+      <MenuStyled>
+        {fakeMenu.map(item => (
+          <ItemCard key={new Date().getTime() + item.id} item={item} className='menuItem' />
+        ))}
+        {isAdmin && <AdminPanel />}
+      </MenuStyled>
+    </AdminPanelContext.Provider>
   );
 }
 
