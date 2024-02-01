@@ -74,9 +74,9 @@ function ProductForm({ handleOnSubmit, formType }) {
         {formType === 'add' ? (
           <ButtonBasic label='Ajouter un nouveau produit' fontSize='0.9rem' width='220px' bgColor={theme.colors.green} />
         ) : formType === 'update' ? (
-          <ButtonBasic label='Ajouter un nouveau produit' width='220px' bgColor={theme.colors.success} />
+          <ButtonBasic label='Modifier le produit' width='220px' bgColor={theme.colors.success} />
         ) : (
-          <p>Type de formulaire inconnu</p>
+          <span>Type de formulaire inconnu</span>
         )}
       </div>
     </ProductFormStyled>

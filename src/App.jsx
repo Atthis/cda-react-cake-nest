@@ -7,22 +7,28 @@ import Login from './views/login/Login';
 import ShopPage from './views/shopPage/ShopPage';
 import Error404 from './views/error404/Error404';
 
-export const UserContext = createContext('');
+import { fakeMenu } from '../fakeData/fakeMenu';
+
+export const UserContext = createContext(null);
+export const CupcakeDataContext = createContext(null);
 
 function App() {
   // Data
   const [username, setUsername] = useState('');
+  const [cupcakeData, setCupcakeData] = useState(fakeMenu);
 
   return (
     <>
       <UserContext.Provider value={{ username, setUsername }}>
-        <Router>
-          <Routes>
-            <Route path='/' element={<Login username={username} setUsername={setUsername} />} />
-            <Route path='/commandes' element={<ShopPage username={username} setUsername={setUsername} />} />
-            <Route path='/*' element={<Error404 />} />
-          </Routes>
-        </Router>
+        <CupcakeDataContext.Provider value={{ cupcakeData, setCupcakeData }}>
+          <Router>
+            <Routes>
+              <Route path='/' element={<Login username={username} setUsername={setUsername} />} />
+              <Route path='/commandes' element={<ShopPage username={username} setUsername={setUsername} />} />
+              <Route path='/*' element={<Error404 />} />
+            </Routes>
+          </Router>
+        </CupcakeDataContext.Provider>
       </UserContext.Provider>
     </>
   );

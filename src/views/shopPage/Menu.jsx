@@ -2,8 +2,7 @@ import React, { createContext, useContext, useState } from 'react';
 import styled from 'styled-components';
 import ItemCard from '../../components/ItemCard';
 import { AdminContext } from './ShopPage';
-
-import { fakeMenu } from '../../../fakeData/fakeMenu';
+import { CupcakeDataContext } from '../../App.jsx';
 import AdminPanel from './admin/AdminPanel';
 
 export const AdminPanelContext = createContext(null);
@@ -21,12 +20,14 @@ const MenuStyled = styled.main`
 
 function Menu() {
   const { isAdmin } = useContext(AdminContext);
+  const { cupcakeData } = useContext(CupcakeDataContext);
+
   const [adminPanelState, setAdminPanelState] = useState({ isCollapsed: false, formType: 'add' });
 
   return (
     <AdminPanelContext.Provider value={{ adminPanelState, setAdminPanelState }}>
       <MenuStyled>
-        {fakeMenu.map(item => (
+        {cupcakeData.map(item => (
           <ItemCard key={new Date().getTime() + item.id} item={item} />
         ))}
         {isAdmin && <AdminPanel />}

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { theme } from '../../../utils';
 import { BsChevronUp, BsChevronDown, BsPlusLg, BsFillPencilFill } from 'react-icons/bs';
@@ -7,6 +7,7 @@ import PanelTab from '../../../components/PanelTab';
 import AddProduct from './AddProduct';
 import UpdateProduct from './UpdateProduct';
 import { AdminPanelContext } from '../Menu';
+import { CupcakeDataContext } from '../../../App';
 
 const AdminPanelStyled = styled.aside`
   position: sticky;
@@ -44,6 +45,7 @@ const AdminPanelStyled = styled.aside`
 
 function AdminPanel() {
   const { adminPanelState, setAdminPanelState } = useContext(AdminPanelContext);
+  const { cupcakeData, setCupcakeData } = useContext(CupcakeDataContext);
 
   function handleCollapse() {
     const newAdminPanelView = adminPanelState.isCollapsed ? false : true;
@@ -59,8 +61,19 @@ function AdminPanel() {
     setAdminPanelState(newAdminPanelState);
   }
 
-  function handleCreate(values) {
-    console.log(values);
+  function handleCreate(data) {
+    const newCupcake = {
+      id: new Date().getTime(),
+      imageSource: data['product-img'],
+      title: data['product-name'],
+      price: data['product-price'],
+      quantity: 0,
+      isAvailable: true,
+      isAdvertised: false,
+    };
+    const newCupcakeData = [newCupcake, ...cupcakeData];
+    console.log(newCupcakeData);
+    setCupcakeData(newCupcakeData);
   }
 
   function handleUpdate(values) {}

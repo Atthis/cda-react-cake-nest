@@ -5,6 +5,9 @@ import { theme } from '../utils';
 import ButtonBasic from './ButtonBasic';
 
 const ItemCardStyled = styled.article`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   width: 280px;
   margin: ${theme.spacing.lg};
   padding: ${theme.spacing.md};
