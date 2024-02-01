@@ -43,7 +43,7 @@ const AdminPanelStyled = styled.aside`
   }
 `;
 
-function AdminPanel() {
+function AdminPanel({ setIsEmpty }) {
   const { adminPanelState, setAdminPanelState } = useContext(AdminPanelContext);
   const { cupcakeData, setCupcakeData } = useContext(CupcakeDataContext);
 
@@ -73,9 +73,10 @@ function AdminPanel() {
     };
     const newCupcakeData = [newCupcake, ...cupcakeData];
     setCupcakeData(newCupcakeData);
+    if (cupcakeData.length <= 0) setIsEmpty(false);
   }
 
-  function handleUpdate(values) {}
+  function handleUpdate(data) {}
 
   return (
     <AdminPanelStyled $isCollapsed={adminPanelState.isCollapsed}>

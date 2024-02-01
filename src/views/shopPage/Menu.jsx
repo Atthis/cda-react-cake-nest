@@ -23,19 +23,32 @@ function Menu() {
   const { cupcakeData, setCupcakeData } = useContext(CupcakeDataContext);
 
   const [adminPanelState, setAdminPanelState] = useState({ isCollapsed: false, formType: 'add' });
+  const [isEmpty, setIsEmpty] = useState(cupcakeData.length > 0 ? false : true);
 
   function handleItemDeletion(id) {
     const newCupcakeData = cupcakeData.filter(item => item.id !== id);
     setCupcakeData(newCupcakeData);
+    if (newCupcakeData.length <= 0) setIsEmpty(true);
   }
 
   return (
     <AdminPanelContext.Provider value={{ adminPanelState, setAdminPanelState }}>
       <MenuStyled>
-        {cupcakeData.map(item => (
-          <ItemCard key={new Date().getTime() + item.id} item={item} handleItemDeletion={handleItemDeletion} />
-        ))}
-        {isAdmin && <AdminPanel />}
+        {!isEmpty ? (
+          cupcakeData.map(item => <ItemCard key={new Date().getTime() + item.id} item={item} handleItemDeletion={handleItemDeletion} />)
+        ) : isAdmin ? (
+          <>
+            <p>Il n'y a plus de produits disponibles ?</p>
+            <p>Cliquez ci-dessous pour les réinitialiser</p>
+            <button onClick={() => setAdminPanelState({ isCollapsed: false, formType: 'add' })}>Générer de nouveaux gâteaux</button>
+          </>
+        ) : (
+          <>
+            <p>Victime de notre succès</p>
+            <p>De nouvelles recettes sont en préparation, revenez vite !</p>
+          </>
+        )}
+        {isAdmin && <AdminPanel setIsEmpty={setIsEmpty} />}
       </MenuStyled>
     </AdminPanelContext.Provider>
   );
