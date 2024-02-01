@@ -20,15 +20,20 @@ const MenuStyled = styled.main`
 
 function Menu() {
   const { isAdmin } = useContext(AdminContext);
-  const { cupcakeData } = useContext(CupcakeDataContext);
+  const { cupcakeData, setCupcakeData } = useContext(CupcakeDataContext);
 
   const [adminPanelState, setAdminPanelState] = useState({ isCollapsed: false, formType: 'add' });
+
+  function handleItemDeletion(id) {
+    const newCupcakeData = cupcakeData.filter(item => item.id !== id);
+    setCupcakeData(newCupcakeData);
+  }
 
   return (
     <AdminPanelContext.Provider value={{ adminPanelState, setAdminPanelState }}>
       <MenuStyled>
         {cupcakeData.map(item => (
-          <ItemCard key={new Date().getTime() + item.id} item={item} />
+          <ItemCard key={new Date().getTime() + item.id} item={item} handleItemDeletion={handleItemDeletion} />
         ))}
         {isAdmin && <AdminPanel />}
       </MenuStyled>
