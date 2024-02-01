@@ -27,7 +27,7 @@ function Menu() {
     <AdminPanelContext.Provider value={{ adminPanelState, setAdminPanelState }}>
       <MenuStyled>
         {fakeMenu.map(item => (
-          <ItemCard key={new Date().getTime() + item.id} item={item} className='menuItem' />
+          <ItemCard key={new Date().getTime() + item.id} item={item} />
         ))}
         {isAdmin && <AdminPanel />}
       </MenuStyled>

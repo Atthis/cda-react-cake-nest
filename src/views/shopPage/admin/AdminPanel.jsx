@@ -20,11 +20,24 @@ const AdminPanelStyled = styled.aside`
   ${props =>
     props.$isCollapsed
       ? `
-      height: 0;
+    height: 0;
     `
       : `
     height: 200px;
-  `}
+    `}
+
+  nav {
+    position: absolute;
+    top: 0;
+    margin-left: ${theme.spacing.lg};
+
+    border-bottom: 2px solid ${theme.colors.greyLight};
+    transform: translateY(-100%);
+
+    > :first-child {
+      padding-right: ${theme.spacing.xs};
+    }
+  }
 `;
 
 function AdminPanel() {
@@ -48,8 +61,8 @@ function AdminPanel() {
     <AdminPanelStyled $isCollapsed={adminPanelState.isCollapsed}>
       <nav>
         <PanelTab icon={adminPanelState.isCollapsed ? <BsChevronUp /> : <BsChevronDown />} action={handleCollapse} />
-        <PanelTab icon={<BsPlusLg />} action={handleCreateBtn} />
-        <PanelTab icon={<BsFillPencilFill />} action={handleUpdateBtn} />
+        <PanelTab icon={<BsPlusLg />} label='Ajouter un produit' action={handleCreateBtn} className={adminPanelState.formType === 'add' ? 'is-active' : ''} />
+        <PanelTab icon={<BsFillPencilFill />} label='Modifier un produit' action={handleUpdateBtn} className={adminPanelState.formType === 'update' ? 'is-active' : ''} />
       </nav>
       {adminPanelState.formType === 'add' ? <AddProduct /> : adminPanelState.formType === 'update' ? <UpdateProduct /> : <p>Erreur de type de formulaire</p>}
     </AdminPanelStyled>
