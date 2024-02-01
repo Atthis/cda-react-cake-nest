@@ -25,34 +25,52 @@ const ProductFormStyled = styled.form`
 `;
 
 function ProductForm({ handleOnSubmit, formType }) {
-  const [formValues, setFormValues] = useState(null);
+  const formDefaultValues = { 'product-name': '', 'product-img': '', 'product-price': '' };
+  const [formValues, setFormValues] = useState(formDefaultValues);
 
   const inputFontSize = '0.8rem';
   const inputTheme = 'dark';
 
-  function handleSubmit() {
-    handleOnSubmit(formValues);
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (!formValues['product-price']) handleOnSubmit({ ...formValues, 'product-price': '0.00' });
+    else handleOnSubmit(formValues);
+    setFormValues(formDefaultValues);
   }
 
   function handleChange(e) {
-    const currentFormValues = '';
-    console.log(e.target);
+    const newFormValues = { ...formValues, [e.target.name]: e.target.value };
+    setFormValues(newFormValues);
   }
 
   return (
     <ProductFormStyled onSubmit={handleSubmit}>
       <ProductPreview />
       <div className='form-inputs-container'>
-        <Input icon={<GiCupcake className='input-icon' />} type='text' name='product-name' placeholder='Nom du produit' theme={inputTheme} fontSize={inputFontSize} />
+        <Input
+          icon={<GiCupcake className='input-icon' />}
+          attributesValues={{ type: 'text', name: 'product-name', placeholder: 'Nom du produit', value: formValues['product-name'], required: false }}
+          style={{ theme: inputTheme, fontSize: inputFontSize }}
+          onChange={handleChange}
+        />
         <Input
           icon={<BsFillCameraFill className='input-icon' />}
-          type='text'
-          name='product-img'
-          placeholder="Lien URL d'une image (ex:https://la-photo-de-mon-produit.png)"
-          theme={inputTheme}
-          fontSize={inputFontSize}
+          attributesValues={{
+            type: 'text',
+            name: 'product-img',
+            placeholder: "Lien URL d'une image (ex:https://la-photo-de-mon-produit.png)",
+            value: formValues['product-img'],
+            required: false,
+          }}
+          style={{ theme: inputTheme, fontSize: inputFontSize }}
+          onChange={handleChange}
         />
-        <Input icon={<MdOutlineEuro className='input-icon' />} type='text' name='product-price' placeholder='Prix' theme={inputTheme} fontSize={inputFontSize} />
+        <Input
+          icon={<MdOutlineEuro className='input-icon' />}
+          attributesValues={{ type: 'text', name: 'product-price', placeholder: 'Prix', value: formValues['product-price'], required: false }}
+          style={{ theme: inputTheme, fontSize: inputFontSize }}
+          onChange={handleChange}
+        />
         {formType === 'add' ? (
           <ButtonBasic label='Ajouter un nouveau produit' fontSize='0.9rem' width='220px' bgColor={theme.colors.green} />
         ) : formType === 'update' ? (

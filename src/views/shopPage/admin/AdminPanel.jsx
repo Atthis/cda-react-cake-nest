@@ -59,7 +59,9 @@ function AdminPanel() {
     setAdminPanelState(newAdminPanelState);
   }
 
-  function handleCreate(values) {}
+  function handleCreate(values) {
+    console.log(values);
+  }
 
   function handleUpdate(values) {}
 
@@ -71,7 +73,7 @@ function AdminPanel() {
         <PanelTab icon={<BsFillPencilFill />} label='Modifier un produit' action={handleUpdateBtn} className={adminPanelState.formType === 'update' ? 'is-active' : ''} />
       </nav>
       {adminPanelState.formType === 'add' ? (
-        <AddProduct addProduct={handleUpdate} />
+        <AddProduct addProduct={handleCreate} />
       ) : adminPanelState.formType === 'update' ? (
         <UpdateProduct updateProduct={handleUpdate} />
       ) : (

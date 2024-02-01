@@ -58,11 +58,20 @@ const InputStyled = styled.div`
   }}
 `;
 
-function Input({ icon, type, name, placeholder, required = false, autoComplete = null, theme = 'light', fontSize = '1rem' }) {
+function Input({ icon, attributesValues, style, onChange }) {
   return (
-    <InputStyled $theme={theme} $fontSize={fontSize}>
+    <InputStyled $theme={style.theme || 'light'} $fontSize={style.fontSize || '1rem'}>
       {icon && icon}
-      <input type={type} name={name} id={name} placeholder={placeholder} required={required} autoComplete={autoComplete} />
+      <input
+        type={attributesValues.type}
+        name={attributesValues.name}
+        id={attributesValues.name}
+        placeholder={attributesValues.placeholder}
+        value={attributesValues.value}
+        required={attributesValues.required || false}
+        autoComplete={attributesValues.autoComplete || ''}
+        onChange={onChange}
+      />
     </InputStyled>
   );
 }
