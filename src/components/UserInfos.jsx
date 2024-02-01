@@ -6,6 +6,7 @@ import { UserContext } from '../App';
 import Logo from './Logo';
 import { BsPersonCircle } from 'react-icons/bs';
 import { theme } from '../utils';
+import { AdminContext } from '../views/shopPage/ShopPage';
 
 const UserInfosStyled = styled.section`
   display: flex;
@@ -40,9 +41,11 @@ const UserInfosStyled = styled.section`
 
 function UserInfos() {
   const { username, setUsername } = useContext(UserContext);
+  const { setIsAdmin } = useContext(AdminContext);
 
   function handleClick() {
     setUsername('');
+    setIsAdmin(false);
   }
 
   return (

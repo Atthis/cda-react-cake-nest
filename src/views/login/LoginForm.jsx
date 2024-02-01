@@ -53,7 +53,7 @@ function LoginForm() {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Input icon={<BsPersonCircle className='input-icon' />} type='text' name='username' placeholder='Entrez votre prénom...' required={true} autocomplete='name' />
+      <Input icon={<BsPersonCircle className='input-icon' />} type='text' name='username' placeholder='Entrez votre prénom...' required={true} autocomplete='name' theme='light' />
       <ButtonBasic label={'Mon espace'} icon={<BsChevronRight className='btn-icon' />} fontSize={theme.fonts.size.P3} width={'100%'} />
     </Form>
   );

@@ -14,6 +14,7 @@ const PanelTabStyled = styled.button`
   border-top-right-radius: ${theme.borderRadius.round};
 
   color: ${theme.colors.greyDark};
+  box-shadow: 0px 0px 5px 1px hsla(0, 0%, 20%, 0.1);
 
   &.is-active {
     background-color: ${theme.colors.background_dark};
