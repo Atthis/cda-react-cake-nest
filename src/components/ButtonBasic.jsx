@@ -3,11 +3,7 @@ import styled from 'styled-components';
 import { theme } from '../utils';
 
 const ButtonBasicStyled = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: ${props => props.$width || '100%'};
-  height: 50px;
   margin-block: 0.833em;
   padding-block: 0.9em;
   border: none;

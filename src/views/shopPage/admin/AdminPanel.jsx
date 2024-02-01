@@ -72,7 +72,6 @@ function AdminPanel() {
       isAdvertised: false,
     };
     const newCupcakeData = [newCupcake, ...cupcakeData];
-    console.log(newCupcakeData);
     setCupcakeData(newCupcakeData);
   }
 

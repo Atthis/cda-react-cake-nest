@@ -15,18 +15,65 @@ const ProductFormStyled = styled.form`
   margin: ${theme.spacing.lg} auto 0 ${theme.spacing.lg};
 
   .form-inputs-container {
+    position: relative;
     width: clamp(450px, 60%, 750px);
     margin-left: ${theme.spacing.md};
 
-    input:first-of-type {
+    input {
       margin-top: 0;
     }
+
+    button {
+      margin-top: 0;
+      border: 2px solid transparent;
+      /* transition: all 0.1s ease-in-out; */
+    }
+
+    .alert-msg {
+      display: none;
+      opacity: 0;
+      margin-left: 1em;
+      font-weight: 600;
+      color: ${theme.colors.success};
+      transition: opacity 0.1s ease-in-out;
+
+      span {
+        position: relative;
+        top: 5px;
+        display: inline-block;
+        width: 20px;
+        aspect-ratio: 1/1;
+        margin-right: 0.3em;
+        border: 2px solid ${theme.colors.success};
+        border-radius: 50px;
+
+        text-align: center;
+        overflow: hidden;
+      }
+    }
+
+    ${props =>
+      props.$isSubmitted
+        ? `
+      button {
+        background-color: ${theme.colors.white};
+        color: ${theme.colors.success};
+        border-color: ${theme.colors.success};
+      }
+
+      .alert-msg {
+        display: initial;
+        opacity: 1;
+      }
+    `
+        : ''}
   }
 `;
 
 function ProductForm({ handleOnSubmit, formType }) {
   const formDefaultValues = { 'product-name': '', 'product-img': '', 'product-price': '' };
   const [formValues, setFormValues] = useState(formDefaultValues);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const inputFontSize = '0.8rem';
   const inputTheme = 'dark';
@@ -36,6 +83,8 @@ function ProductForm({ handleOnSubmit, formType }) {
     if (!formValues['product-price']) handleOnSubmit({ ...formValues, 'product-price': '0.00' });
     else handleOnSubmit(formValues);
     setFormValues(formDefaultValues);
+    setIsSubmitted(true);
+    setTimeout(() => setIsSubmitted(false), 1900);
   }
 
   function handleChange(e) {
@@ -44,7 +93,7 @@ function ProductForm({ handleOnSubmit, formType }) {
   }
 
   return (
-    <ProductFormStyled onSubmit={handleSubmit}>
+    <ProductFormStyled onSubmit={handleSubmit} $isSubmitted={isSubmitted}>
       <ProductPreview />
       <div className='form-inputs-container'>
         <Input
@@ -72,7 +121,15 @@ function ProductForm({ handleOnSubmit, formType }) {
           onChange={handleChange}
         />
         {formType === 'add' ? (
-          <ButtonBasic label='Ajouter un nouveau produit' fontSize='0.9rem' width='220px' bgColor={theme.colors.green} />
+          <>
+            <ButtonBasic label='Ajouter un nouveau produit' fontSize='0.9rem' width='220px' bgColor={theme.colors.green} />
+            <span className='alert-msg'>
+              <span>
+                <FiCheck />
+              </span>
+              Ajouté avec succès !
+            </span>
+          </>
         ) : formType === 'update' ? (
           <ButtonBasic label='Modifier le produit' width='220px' bgColor={theme.colors.success} />
         ) : (
