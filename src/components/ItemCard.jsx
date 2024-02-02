@@ -12,6 +12,7 @@ const ItemCardStyled = styled.article`
   flex-direction: column;
   justify-content: flex-end;
   width: 280px;
+  height: 370px;
   margin: ${theme.spacing.lg};
   padding: ${theme.spacing.md};
   border-radius: ${theme.borderRadius.extraRound};

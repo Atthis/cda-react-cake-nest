@@ -14,13 +14,14 @@ const ProductPreviewStyled = styled.div`
   ${props =>
     props.$hasUrl
       ? `
-      border: 1px solid ${theme.colors.greyLight};
+      height: 250px;
+    border: 1px solid ${theme.colors.greyLight};
     border-radius: ${theme.borderRadius.round};
-  `
+    `
       : `
     border: 1px dashed ${theme.colors.greyMedium};
     border-radius: ${theme.borderRadius.round};
-  `}
+    `}
 
   p {
     color: ${theme.colors.greyMedium};
@@ -28,6 +29,8 @@ const ProductPreviewStyled = styled.div`
 
   img {
     width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
 `;
 

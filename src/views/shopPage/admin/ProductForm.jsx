@@ -12,6 +12,7 @@ import { theme } from '../../../utils';
 const ProductFormStyled = styled.form`
   display: flex;
   align-items: flex-start;
+  height: fit-content;
   margin: ${theme.spacing.lg} auto 0 ${theme.spacing.lg};
 
   .form-inputs-container {
