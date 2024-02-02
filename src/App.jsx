@@ -19,7 +19,7 @@ function App() {
   return (
     <>
       <UserContext.Provider value={{ username, setUsername }}>
-        <CupcakeDataContext.Provider value={{ cupcakeData, setCupcakeData }}>
+        <CupcakeDataContext.Provider value={{ cupcakeData, setCupcakeData, cupcakeStarterData: fakeMenu }}>
           <Router>
             <Routes>
               <Route path='/' element={<Login username={username} setUsername={setUsername} />} />

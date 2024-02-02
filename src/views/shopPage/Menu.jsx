@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import ItemCard from '../../components/ItemCard';
 import { IsAdminContext } from '../../context/IsAdminContext.jsx';
@@ -38,7 +38,7 @@ const MenuStyled = styled.main`
 
 function Menu() {
   const { isAdmin } = useContext(IsAdminContext);
-  const { cupcakeData, setCupcakeData } = useContext(CupcakeDataContext);
+  const { cupcakeData, setCupcakeData, cupcakeStarterData } = useContext(CupcakeDataContext);
 
   const [adminPanelState, setAdminPanelState] = useState({ isCollapsed: false, formType: 'add' });
   const [isEmpty, setIsEmpty] = useState(cupcakeData.length > 0 ? false : true);
@@ -47,6 +47,11 @@ function Menu() {
     const newCupcakeData = cupcakeData.filter(item => item.id !== id);
     setCupcakeData(newCupcakeData);
     if (newCupcakeData.length <= 0) setIsEmpty(true);
+  }
+
+  function handleItemGeneration() {
+    setCupcakeData(cupcakeStarterData);
+    setIsEmpty(false);
   }
 
   return (
@@ -58,7 +63,7 @@ function Menu() {
           <div className='empty-msg go-left'>
             <p>Il n'y a plus de produits disponibles ?</p>
             <p>Cliquez ci-dessous pour les réinitialiser</p>
-            <ButtonBasic label='Générer de nouveaux gâteaux' fontSize='1.2rem' width='60%' handleClick={() => setAdminPanelState({ isCollapsed: false, formType: 'add' })} />
+            <ButtonBasic label='Générer de nouveaux gâteaux' fontSize='1.2rem' width='60%' handleClick={handleItemGeneration} />
           </div>
         ) : (
           <div className='empty-msg'>

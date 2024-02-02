@@ -85,12 +85,14 @@ function AdminPanel({ setIsEmpty }) {
         <PanelTab icon={<BsPlusLg />} label='Ajouter un produit' action={handleCreateBtn} className={adminPanelState.formType === 'add' ? 'is-active' : ''} />
         <PanelTab icon={<BsFillPencilFill />} label='Modifier un produit' action={handleUpdateBtn} className={adminPanelState.formType === 'update' ? 'is-active' : ''} />
       </nav>
-      {adminPanelState.formType === 'add' ? (
+      {adminPanelState.formType === 'add' && !adminPanelState.isCollapsed ? (
         <AddProduct addProduct={handleCreate} />
-      ) : adminPanelState.formType === 'update' ? (
+      ) : adminPanelState.formType === 'update' && !adminPanelState.isCollapsed ? (
         <UpdateProduct updateProduct={handleUpdate} />
-      ) : (
+      ) : !adminPanelState.isCollapsed ? (
         <p>Erreur de type de formulaire</p>
+      ) : (
+        ''
       )}
     </AdminPanelStyled>
   );
