@@ -55,6 +55,7 @@ function AdminPanel({ setIsEmpty }) {
   function handleCreateBtn() {
     const newAdminPanelState = { isCollapsed: false, formType: 'add' };
     setAdminPanelState(newAdminPanelState);
+    setUpdatingItem(null);
   }
   function handleUpdateBtn() {
     const newAdminPanelState = { isCollapsed: false, formType: 'update' };
