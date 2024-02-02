@@ -15,7 +15,6 @@ function App() {
   // Data
   const [username, setUsername] = useState('');
   const [cupcakeData, setCupcakeData] = useState(fakeMenu);
-  // const [cupcakeData, setCupcakeData] = useState('');
 
   return (
     <>
