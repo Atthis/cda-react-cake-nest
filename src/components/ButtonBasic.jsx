@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { theme } from '../utils';
 
 const ButtonBasicStyled = styled.button`
-  width: ${props => props.$width || '100%'};
+  width: ${props => props.$width};
   margin-block: 0.833em;
   padding-block: 0.9em;
   border: none;
@@ -24,9 +24,9 @@ const ButtonBasicStyled = styled.button`
   }
 `;
 
-function ButtonBasic({ label, icon, fontSize = '1rem', width = 'auto', bgColor = theme.colors.primary }) {
+function ButtonBasic({ label, icon, fontSize = '1rem', width = 'auto', bgColor = theme.colors.primary, handleClick }) {
   return (
-    <ButtonBasicStyled $fontSize={fontSize} $width={width} $bgColor={bgColor}>
+    <ButtonBasicStyled $fontSize={fontSize} $width={width} $bgColor={bgColor} onClick={handleClick}>
       {label} {icon && icon}
     </ButtonBasicStyled>
   );
