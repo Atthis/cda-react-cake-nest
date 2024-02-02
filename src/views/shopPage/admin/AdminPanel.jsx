@@ -76,14 +76,17 @@ function AdminPanel({ setIsEmpty }) {
     if (cupcakeData.length <= 0) setIsEmpty(false);
   }
 
-  function handleUpdate(data) {
-    console.log(data);
+  function handleUpdate(itemValues) {
+    const newItemValues = { ...updatingItem, imageSource: itemValues.imageSource, title: itemValues.title, price: itemValues.price };
 
-    setUpdatingItem({ ...updatingItem, imageSource: data.imageSource, title: data.title, price: data.price });
+    const currentCupcakeData = [...cupcakeData];
 
-    const newCupcakeData = cupcakeData.map(item => (item.id === updatingItem.id ? updatingItem : item));
-    setCupcakeData(newCupcakeData);
-    console.log(updatingItem);
+    const updatedItemId = currentCupcakeData.findIndex(item => item.id === newItemValues.id);
+
+    currentCupcakeData.splice(updatedItemId, 1, newItemValues);
+
+    setCupcakeData(currentCupcakeData);
+    setUpdatingItem(newItemValues);
   }
 
   return (
