@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { theme } from '../utils';
-import { AdminContext } from '../views/shopPage/ShopPage';
+import { IsAdminContext } from '../context/IsAdminContext';
 import { toast } from 'react-toastify';
 
 const AdminToggleStyled = styled.button`
@@ -61,7 +61,7 @@ const AdminToggleStyled = styled.button`
 `;
 
 function AdminToggle() {
-  const { isAdmin, setIsAdmin } = useContext(AdminContext);
+  const { isAdmin, setIsAdmin } = useContext(IsAdminContext);
 
   const adminNotify = () => toast.info('Mode Admin actif');
 

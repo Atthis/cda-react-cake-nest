@@ -6,8 +6,7 @@ import Wrapper from '../../components/Wrapper';
 import NavBar from '../../components/NavBar';
 import Menu from './Menu.jsx';
 import { ToastContainer } from 'react-toastify';
-
-export const AdminContext = createContext(null);
+import { IsAdminContext } from '../../context/IsAdminContext.jsx';
 
 const ShopPageStyled = styled.div`
   --toastify-icon-color-info: ${theme.colors.green};
@@ -25,10 +24,11 @@ const ShopPageStyled = styled.div`
 `;
 
 function ShopPage() {
+  // REPASSER isAdmin A FALSE POUR LA "PROD"
   const [isAdmin, setIsAdmin] = useState(true);
 
   return (
-    <AdminContext.Provider value={{ isAdmin, setIsAdmin }}>
+    <IsAdminContext.Provider value={{ isAdmin, setIsAdmin }}>
       <Wrapper bgImg={theme.colors.primary}>
         <ShopPageStyled>
           <ToastContainer role='alert' position='bottom-right' autoClose={1500} theme='light' closeOnClick />
@@ -36,7 +36,7 @@ function ShopPage() {
           <Menu />
         </ShopPageStyled>
       </Wrapper>
-    </AdminContext.Provider>
+    </IsAdminContext.Provider>
   );
 }
 

@@ -5,8 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import Input from '../../components/Input';
 import styled from 'styled-components';
 import { theme } from '../../utils';
-import { UserContext } from '../../App.jsx';
+import { UserContext } from '../../context/UserContext.jsx';
 import ButtonBasic from '../../components/ButtonBasic.jsx';
+import { BsPersonCircle } from 'react-icons/bs';
 
 import { BsChevronRight } from 'react-icons/bs';
 
@@ -52,7 +53,11 @@ function LoginForm() {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Input />
+      <Input
+        icon={<BsPersonCircle className='input-icon' />}
+        style={{ theme: 'light' }}
+        attributesValues={{ type: 'text', name: 'username', placeholder: 'Entrez votre prénom...', required: true, autocomplete: 'name' }}
+      />
       <ButtonBasic label={'Mon espace'} icon={<BsChevronRight className='btn-icon' />} fontSize={theme.fonts.size.P3} width={'100%'} />
     </Form>
   );

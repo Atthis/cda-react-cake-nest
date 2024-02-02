@@ -1,7 +1,12 @@
 import React from 'react';
+import ProductForm from './ProductForm';
 
-function AddProduct() {
-  return <div>Ajouter un produit</div>;
+function AddProduct({ addProduct }) {
+  return (
+    <>
+      <ProductForm handleOnSubmit={addProduct} formType='add' />
+    </>
+  );
 }
 
 export default AddProduct;

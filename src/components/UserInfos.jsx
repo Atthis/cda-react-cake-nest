@@ -2,10 +2,11 @@ import React from 'react';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { UserContext } from '../App';
+import { UserContext } from '../context/UserContext';
 import Logo from './Logo';
 import { BsPersonCircle } from 'react-icons/bs';
 import { theme } from '../utils';
+import { IsAdminContext } from '../context/IsAdminContext';
 
 const UserInfosStyled = styled.section`
   display: flex;
@@ -40,9 +41,11 @@ const UserInfosStyled = styled.section`
 
 function UserInfos() {
   const { username, setUsername } = useContext(UserContext);
+  const { setIsAdmin } = useContext(IsAdminContext);
 
   function handleClick() {
     setUsername('');
+    setIsAdmin(false);
   }
 
   return (

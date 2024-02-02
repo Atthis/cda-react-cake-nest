@@ -3,16 +3,12 @@ import styled from 'styled-components';
 import { theme } from '../utils';
 
 const ButtonBasicStyled = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: ${props => props.$width || '100%'};
-  height: 50px;
+  width: ${props => props.$width};
   margin-block: 0.833em;
-  padding-block: 1.333em;
+  padding-block: 0.9em;
   border: none;
   border-radius: ${theme.borderRadius.round};
-  background-color: ${theme.colors.primary};
+  background-color: ${props => props.$bgColor || theme.colors.primary};
   font-size: ${props => props.$fontSize || theme.fonts.size.P3};
   font-weight: 700;
   color: ${theme.colors.white};
@@ -28,9 +24,9 @@ const ButtonBasicStyled = styled.button`
   }
 `;
 
-function ButtonBasic({ label, icon, fontSize, width }) {
+function ButtonBasic({ label, icon, fontSize = '1rem', width = 'auto', bgColor = theme.colors.primary, handleClick }) {
   return (
-    <ButtonBasicStyled $fontSize={fontSize} $width={width}>
+    <ButtonBasicStyled $fontSize={fontSize} $width={width} $bgColor={bgColor} onClick={handleClick}>
       {label} {icon && icon}
     </ButtonBasicStyled>
   );
