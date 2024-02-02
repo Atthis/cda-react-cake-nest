@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { formatPrice } from '../utils/maths';
-import { AdminContext } from '../views/shopPage/ShopPage';
+import { IsAdminContext } from '../context/IsAdminContext';
 import { theme } from '../utils';
 import { TiDelete } from 'react-icons/ti';
 import ButtonBasic from './ButtonBasic';
@@ -49,7 +49,7 @@ const ItemCardStyled = styled.article`
 `;
 
 function ItemCard({ item, handleItemDeletion }) {
-  const { isAdmin } = useContext(AdminContext);
+  const { isAdmin } = useContext(IsAdminContext);
 
   function handleDelete(id) {
     handleItemDeletion(id);

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Input from '../../components/Input';
 import styled from 'styled-components';
 import { theme } from '../../utils';
-import { UserContext } from '../../App.jsx';
+import { UserContext } from '../../context/UserContext.jsx';
 import ButtonBasic from '../../components/ButtonBasic.jsx';
 import { BsPersonCircle } from 'react-icons/bs';
 

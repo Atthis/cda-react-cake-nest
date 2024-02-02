@@ -9,11 +9,13 @@ const ProductPreviewStyled = styled.div`
   width: 250px;
   min-height: 120px;
 
+  text-align: center;
+
   ${props =>
     props.$hasUrl
       ? `
-    border: none;
-    border-radius: 0;
+      border: 1px solid ${theme.colors.greyLight};
+    border-radius: ${theme.borderRadius.round};
   `
       : `
     border: 1px dashed ${theme.colors.greyMedium};

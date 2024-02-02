@@ -6,8 +6,8 @@ import { BsChevronUp, BsChevronDown, BsPlusLg, BsFillPencilFill } from 'react-ic
 import PanelTab from '../../../components/PanelTab';
 import AddProduct from './AddProduct';
 import UpdateProduct from './UpdateProduct';
-import { AdminPanelContext } from '../Menu';
-import { CupcakeDataContext } from '../../../App';
+import { AdminPanelContext } from '../../../context/AdminPanelContext.jsx';
+import { CupcakeDataContext } from '../../../context/CupcakeDataContext.jsx';
 
 const AdminPanelStyled = styled.aside`
   position: sticky;

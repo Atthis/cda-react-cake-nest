@@ -1,11 +1,10 @@
 import React, { createContext, useContext, useState } from 'react';
 import styled from 'styled-components';
 import ItemCard from '../../components/ItemCard';
-import { AdminContext } from './ShopPage';
-import { CupcakeDataContext } from '../../App.jsx';
+import { IsAdminContext } from '../../context/IsAdminContext.jsx';
+import { CupcakeDataContext } from '../../context/CupcakeDataContext.jsx';
 import AdminPanel from './admin/AdminPanel';
-
-export const AdminPanelContext = createContext(null);
+import { AdminPanelContext } from '../../context/AdminPanelContext.jsx';
 
 const MenuStyled = styled.main`
   flex: 1;
@@ -25,7 +24,7 @@ const MenuStyled = styled.main`
 `;
 
 function Menu() {
-  const { isAdmin } = useContext(AdminContext);
+  const { isAdmin } = useContext(IsAdminContext);
   const { cupcakeData, setCupcakeData } = useContext(CupcakeDataContext);
 
   const [adminPanelState, setAdminPanelState] = useState({ isCollapsed: false, formType: 'add' });

@@ -6,11 +6,10 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import Login from './views/login/Login';
 import ShopPage from './views/shopPage/ShopPage';
 import Error404 from './views/error404/Error404';
+import { CupcakeDataContext } from './context/CupcakeDataContext';
+import { UserContext } from './context/UserContext';
 
 import { fakeMenu } from '../fakeData/fakeMenu';
-
-export const UserContext = createContext(null);
-export const CupcakeDataContext = createContext(null);
 
 function App() {
   // Data
