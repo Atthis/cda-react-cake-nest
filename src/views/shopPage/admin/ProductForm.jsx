@@ -94,7 +94,7 @@ function ProductForm({ handleOnSubmit, formType }) {
 
   return (
     <ProductFormStyled onSubmit={handleSubmit} $isSubmitted={isSubmitted}>
-      <ProductPreview />
+      <ProductPreview imgUrl={formValues['product-img']} />
       <div className='form-inputs-container'>
         <Input
           icon={<GiCupcake className='input-icon' />}
@@ -116,7 +116,7 @@ function ProductForm({ handleOnSubmit, formType }) {
         />
         <Input
           icon={<MdOutlineEuro className='input-icon' />}
-          attributesValues={{ type: 'text', name: 'product-price', placeholder: 'Prix', value: formValues['product-price'], required: false }}
+          attributesValues={{ type: 'number', name: 'product-price', placeholder: 'Prix', value: formValues['product-price'], required: false, step: '0.001' }}
           style={{ theme: inputTheme, fontSize: inputFontSize }}
           onChange={handleChange}
         />

@@ -10,7 +10,7 @@ const ProductPreviewStyled = styled.div`
   min-height: 120px;
 
   ${props =>
-    props.imgUrl
+    props.$hasUrl
       ? `
     border: none;
     border-radius: 0;
@@ -23,10 +23,14 @@ const ProductPreviewStyled = styled.div`
   p {
     color: ${theme.colors.greyMedium};
   }
+
+  img {
+    width: 100%;
+  }
 `;
 
 function ProductPreview({ imgUrl }) {
-  return <ProductPreviewStyled>{imgUrl ? <img src={imgUrl} alt='aperçu image produit' /> : <p>Aucune image</p>}</ProductPreviewStyled>;
+  return <ProductPreviewStyled $hasUrl={imgUrl}>{imgUrl ? <img src={imgUrl} alt='aperçu image produit' /> : <p>Aucune image</p>}</ProductPreviewStyled>;
 }
 
 export default ProductPreview;

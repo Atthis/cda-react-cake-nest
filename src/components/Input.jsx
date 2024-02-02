@@ -71,6 +71,7 @@ function Input({ icon, attributesValues, style, onChange }) {
         required={attributesValues.required || false}
         autoComplete={attributesValues.autoComplete || ''}
         onChange={onChange}
+        step={attributesValues.step && attributesValues.step}
       />
     </InputStyled>
   );

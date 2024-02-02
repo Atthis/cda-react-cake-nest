@@ -30,7 +30,8 @@ const ItemCardStyled = styled.article`
   }
 
   img {
-    height: 200px;
+    /* height: 200px; */
+    height: 50px;
     margin-inline: auto;
   }
 

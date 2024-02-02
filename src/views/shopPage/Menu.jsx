@@ -16,6 +16,12 @@ const MenuStyled = styled.main`
   flex-wrap: wrap;
   justify-content: center;
   overflow-y: scroll;
+
+  align-items: flex-start;
+
+  .empty-msg {
+    align-self: center;
+  }
 `;
 
 function Menu() {
@@ -37,16 +43,16 @@ function Menu() {
         {!isEmpty ? (
           cupcakeData.map(item => <ItemCard key={new Date().getTime() + item.id} item={item} handleItemDeletion={handleItemDeletion} />)
         ) : isAdmin ? (
-          <>
+          <div className='empty-msg'>
             <p>Il n'y a plus de produits disponibles ?</p>
             <p>Cliquez ci-dessous pour les réinitialiser</p>
             <button onClick={() => setAdminPanelState({ isCollapsed: false, formType: 'add' })}>Générer de nouveaux gâteaux</button>
-          </>
+          </div>
         ) : (
-          <>
+          <div className='empty-msg'>
             <p>Victime de notre succès</p>
             <p>De nouvelles recettes sont en préparation, revenez vite !</p>
-          </>
+          </div>
         )}
         {isAdmin && <AdminPanel setIsEmpty={setIsEmpty} />}
       </MenuStyled>
