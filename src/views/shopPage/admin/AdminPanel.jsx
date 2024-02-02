@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { theme } from '../../../utils';
 import { BsChevronUp, BsChevronDown, BsPlusLg, BsFillPencilFill } from 'react-icons/bs';
@@ -44,7 +44,7 @@ const AdminPanelStyled = styled.aside`
 `;
 
 function AdminPanel({ setIsEmpty }) {
-  const { adminPanelState, setAdminPanelState } = useContext(AdminPanelContext);
+  const { adminPanelState, setAdminPanelState, updatingItem, setUpdatingItem } = useContext(AdminPanelContext);
   const { cupcakeData, setCupcakeData } = useContext(CupcakeDataContext);
 
   function handleCollapse() {
@@ -76,7 +76,15 @@ function AdminPanel({ setIsEmpty }) {
     if (cupcakeData.length <= 0) setIsEmpty(false);
   }
 
-  function handleUpdate(data) {}
+  function handleUpdate(data) {
+    console.log(data);
+
+    setUpdatingItem({ ...updatingItem, imageSource: data.imageSource, title: data.title, price: data.price });
+
+    const newCupcakeData = cupcakeData.map(item => (item.id === updatingItem.id ? updatingItem : item));
+    setCupcakeData(newCupcakeData);
+    console.log(updatingItem);
+  }
 
   return (
     <AdminPanelStyled $isCollapsed={adminPanelState.isCollapsed}>
@@ -88,7 +96,7 @@ function AdminPanel({ setIsEmpty }) {
       {adminPanelState.formType === 'add' && !adminPanelState.isCollapsed ? (
         <AddProduct addProduct={handleCreate} />
       ) : adminPanelState.formType === 'update' && !adminPanelState.isCollapsed ? (
-        <UpdateProduct updateProduct={handleUpdate} />
+        <UpdateProduct updateProduct={handleUpdate} updatingItem={updatingItem} handleUpdate={handleUpdate} />
       ) : !adminPanelState.isCollapsed ? (
         <p>Erreur de type de formulaire</p>
       ) : (
