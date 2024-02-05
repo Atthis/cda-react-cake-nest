@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import { AdminPanelContext } from '../../../context/AdminPanelContext';
 import styled from 'styled-components';
 import ProductPreview from '../../../components/ProductPreview';
 import Input from '../../../components/Input';
@@ -71,13 +72,29 @@ const ProductFormStyled = styled.form`
   }
 `;
 
-function ProductForm({ handleOnSubmit, formType }) {
-  const formDefaultValues = { 'product-name': '', 'product-img': '', 'product-price': '' };
+function ProductForm({ handleOnSubmit, formType, handleUpdate }) {
+  const { updatingItem } = useContext(AdminPanelContext);
+
+  const formDefaultValues =
+    formType === 'update' && updatingItem
+      ? { 'product-name': updatingItem.title, 'product-img': updatingItem.imageSource, 'product-price': updatingItem.price }
+      : { 'product-name': '', 'product-img': '', 'product-price': '' };
   const [formValues, setFormValues] = useState(formDefaultValues);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+  const firstInput = useRef();
+
   const inputFontSize = '0.8rem';
   const inputTheme = 'dark';
+
+  useEffect(() => {
+    if (formType === 'update') firstInput.current.focus();
+  }, []);
+
+  useEffect(() => {
+    if (formType === 'update' && updatingItem)
+      return setFormValues({ 'product-name': updatingItem.title, 'product-img': updatingItem.imageSource, 'product-price': updatingItem.price });
+  }, [updatingItem]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -91,6 +108,7 @@ function ProductForm({ handleOnSubmit, formType }) {
   function handleChange(e) {
     const newFormValues = { ...formValues, [e.target.name]: e.target.value };
     setFormValues(newFormValues);
+    if (formType === 'update') handleUpdate({ imageSource: newFormValues['product-img'], title: newFormValues['product-name'], price: newFormValues['product-price'] });
   }
 
   return (
@@ -99,9 +117,16 @@ function ProductForm({ handleOnSubmit, formType }) {
       <div className='form-inputs-container'>
         <Input
           icon={<GiCupcake className='input-icon' />}
-          attributesValues={{ type: 'text', name: 'product-name', placeholder: 'Nom du produit', value: formValues['product-name'], required: false }}
+          attributesValues={{
+            type: 'text',
+            name: 'product-name',
+            placeholder: 'Nom du produit',
+            value: formValues['product-name'],
+            required: false,
+          }}
           style={{ theme: inputTheme, fontSize: inputFontSize }}
           onChange={handleChange}
+          reference={firstInput}
         />
         <Input
           icon={<BsFillCameraFill className='input-icon' />}
@@ -132,7 +157,9 @@ function ProductForm({ handleOnSubmit, formType }) {
             </span>
           </>
         ) : formType === 'update' ? (
-          <ButtonBasic label='Modifier le produit' width='220px' bgColor={theme.colors.success} />
+          <p>
+            Cliquer sur un produit pour le modifier <u>en temps réel</u>
+          </p>
         ) : (
           <span>Type de formulaire inconnu</span>
         )}

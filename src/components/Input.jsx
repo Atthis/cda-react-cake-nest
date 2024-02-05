@@ -58,7 +58,7 @@ const InputStyled = styled.div`
   }}
 `;
 
-function Input({ icon, attributesValues, style, onChange }) {
+function Input({ icon, attributesValues, style, onChange, reference }) {
   return (
     <InputStyled $theme={style.theme || 'light'} $fontSize={style.fontSize || '1rem'}>
       {icon && icon}
@@ -72,6 +72,8 @@ function Input({ icon, attributesValues, style, onChange }) {
         autoComplete={attributesValues.autoComplete || ''}
         onChange={onChange}
         step={attributesValues.step && attributesValues.step}
+        autoFocus={attributesValues.autofocus}
+        ref={reference}
       />
     </InputStyled>
   );

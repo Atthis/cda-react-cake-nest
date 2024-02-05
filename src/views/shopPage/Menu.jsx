@@ -41,6 +41,7 @@ function Menu() {
   const { cupcakeData, setCupcakeData, cupcakeStarterData } = useContext(CupcakeDataContext);
 
   const [adminPanelState, setAdminPanelState] = useState({ isCollapsed: false, formType: 'add' });
+  const [updatingItem, setUpdatingItem] = useState(null);
   const [isEmpty, setIsEmpty] = useState(cupcakeData.length > 0 ? false : true);
 
   function handleItemDeletion(id) {
@@ -55,7 +56,7 @@ function Menu() {
   }
 
   return (
-    <AdminPanelContext.Provider value={{ adminPanelState, setAdminPanelState }}>
+    <AdminPanelContext.Provider value={{ adminPanelState, setAdminPanelState, updatingItem, setUpdatingItem }}>
       <MenuStyled>
         {!isEmpty ? (
           cupcakeData.map(item => <ItemCard key={new Date().getTime() + item.id} item={item} handleItemDeletion={handleItemDeletion} />)

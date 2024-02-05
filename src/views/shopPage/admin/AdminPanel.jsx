@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { theme } from '../../../utils';
 import { BsChevronUp, BsChevronDown, BsPlusLg, BsFillPencilFill } from 'react-icons/bs';
@@ -44,7 +44,7 @@ const AdminPanelStyled = styled.aside`
 `;
 
 function AdminPanel({ setIsEmpty }) {
-  const { adminPanelState, setAdminPanelState } = useContext(AdminPanelContext);
+  const { adminPanelState, setAdminPanelState, updatingItem, setUpdatingItem } = useContext(AdminPanelContext);
   const { cupcakeData, setCupcakeData } = useContext(CupcakeDataContext);
 
   function handleCollapse() {
@@ -55,6 +55,7 @@ function AdminPanel({ setIsEmpty }) {
   function handleCreateBtn() {
     const newAdminPanelState = { isCollapsed: false, formType: 'add' };
     setAdminPanelState(newAdminPanelState);
+    setUpdatingItem(null);
   }
   function handleUpdateBtn() {
     const newAdminPanelState = { isCollapsed: false, formType: 'update' };
@@ -76,7 +77,18 @@ function AdminPanel({ setIsEmpty }) {
     if (cupcakeData.length <= 0) setIsEmpty(false);
   }
 
-  function handleUpdate(data) {}
+  function handleUpdate(itemValues) {
+    const newItemValues = { ...updatingItem, imageSource: itemValues.imageSource, title: itemValues.title, price: itemValues.price };
+
+    const currentCupcakeData = [...cupcakeData];
+
+    const updatedItemId = currentCupcakeData.findIndex(item => item.id === newItemValues.id);
+
+    currentCupcakeData.splice(updatedItemId, 1, newItemValues);
+
+    setCupcakeData(currentCupcakeData);
+    setUpdatingItem(newItemValues);
+  }
 
   return (
     <AdminPanelStyled $isCollapsed={adminPanelState.isCollapsed}>
@@ -88,7 +100,7 @@ function AdminPanel({ setIsEmpty }) {
       {adminPanelState.formType === 'add' && !adminPanelState.isCollapsed ? (
         <AddProduct addProduct={handleCreate} />
       ) : adminPanelState.formType === 'update' && !adminPanelState.isCollapsed ? (
-        <UpdateProduct updateProduct={handleUpdate} />
+        <UpdateProduct updateProduct={handleUpdate} updatingItem={updatingItem} handleUpdate={handleUpdate} />
       ) : !adminPanelState.isCollapsed ? (
         <p>Erreur de type de formulaire</p>
       ) : (
