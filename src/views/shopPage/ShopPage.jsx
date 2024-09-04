@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { createContext } from 'react';
 import styled from 'styled-components';
 import { theme } from '../../utils/index.js';
 import Wrapper from '../../components/Wrapper';
@@ -24,8 +23,7 @@ const ShopPageStyled = styled.div`
 `;
 
 function ShopPage() {
-  // REPASSER isAdmin A FALSE POUR LA "PROD"
-  const [isAdmin, setIsAdmin] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   return (
     <IsAdminContext.Provider value={{ isAdmin, setIsAdmin }}>
