@@ -12,28 +12,31 @@ import { UserContext } from './context/UserContext';
 
 // import { fakeMenu } from '../fakeData/fakeMenu';
 
-  const data = async () => {
-    const res = await apiAxios.get('/api/cupcake');
-    const data = await res.data.data;
-    return data;
-  }
+// Get cupcake data
+let cupcakeStarterData = {};
+await apiAxios.get('/api/cupcake')
+  .then(res => cupcakeStarterData = res.data.data);
 
-  const cupcakeStarterData = await data();
+// Get user info
+let baseUserData = {};
+apiAxios.get('/api/user')
+  .then(res => baseUserData = res.data)
+  .catch(err => {});
 
 function App() {
   // Data
-  const [username, setUsername] = useState('');
+  const [userData, setuserData] = useState(baseUserData);
   const [cupcakeData, setCupcakeData] = useState(cupcakeStarterData);
 
 
   return (
     <>
-      <UserContext.Provider value={{ username, setUsername }}>
-        <CupcakeDataContext.Provider value={{ cupcakeData, setCupcakeData, cupcakeStarterData }}>
+      <UserContext.Provider value={{ userData, setuserData }}>
+        <CupcakeDataContext.Provider value={{ cupcakeData, setCupcakeData }}>
           <Router>
             <Routes>
-              <Route path='/' element={<Login username={username} setUsername={setUsername} />} />
-              <Route path='/commandes' element={<ShopPage username={username} setUsername={setUsername} />} />
+              <Route path='/' element={<Login userData={userData} setuserData={setuserData} />} />
+              <Route path='/commandes' element={<ShopPage userData={userData} setuserData={setuserData} />} />
               <Route path='/*' element={<Error404 />} />
             </Routes>
           </Router>

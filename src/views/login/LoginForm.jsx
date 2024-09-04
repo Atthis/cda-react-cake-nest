@@ -7,9 +7,10 @@ import styled from 'styled-components';
 import { theme } from '../../utils';
 import { UserContext } from '../../context/UserContext.jsx';
 import ButtonBasic from '../../components/ButtonBasic.jsx';
-import { BsPersonCircle } from 'react-icons/bs';
+import { BsPersonCircle, BsKey } from 'react-icons/bs';
 
 import { BsChevronRight } from 'react-icons/bs';
+import apiAxios from '../../../libs/axios.js';
 
 const Form = styled.form`
   width: 100%;
@@ -41,14 +42,24 @@ const Form = styled.form`
   }
 `;
 
+
 function LoginForm() {
-  const { setUsername } = useContext(UserContext);
+  const { setuserData } = useContext(UserContext);
   const navigateTo = useNavigate();
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    setUsername(e.target.username.value);
-    navigateTo('/commandes');
+
+    apiAxios.post('/login', {
+      email: e.target.email.value,
+      password: e.target.password.value
+    })
+      .then(res => {
+        console.log(res);
+        setuserData(res.data);
+        navigateTo('/commandes');
+      })
+      .catch(err => console.log(err));
   }
 
   return (
@@ -56,7 +67,12 @@ function LoginForm() {
       <Input
         icon={<BsPersonCircle className='input-icon' />}
         style={{ theme: 'light' }}
-        attributesValues={{ type: 'text', name: 'username', placeholder: 'Entrez votre prénom...', required: true, autocomplete: 'name' }}
+        attributesValues={{ type: 'email', name: 'email', placeholder: 'Entrez votre email...', required: true, autocomplete: 'email' }}
+      />
+      <Input
+        icon={<BsKey className='input-icon' />}
+        style={{ theme: 'light' }}
+        attributesValues={{ type: 'password', name: 'password', placeholder: 'Entrez votre mot de passe...', required: true, autocomplete: 'password' }}
       />
       <ButtonBasic label={'Mon espace'} icon={<BsChevronRight className='btn-icon' />} fontSize={theme.fonts.size.P3} width={'100%'} />
     </Form>
