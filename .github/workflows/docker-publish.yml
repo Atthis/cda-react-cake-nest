@@ -28,13 +28,9 @@ jobs:
       # Step 4: Build the Docker image
       - name: Build the Docker image
         run: |
-          docker build -t username/cda-cakenest:latest .
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/cda-cakenest .
 
       # Step 5: Push the Docker image to Docker Hub
       - name: Push the Docker image
         run: |
-          docker push username/cda-cakenest:latest
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/cda-cakenest
