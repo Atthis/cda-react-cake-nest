@@ -1,6 +1,10 @@
 # Step 1: Build the React app
 FROM node:18-alpine AS build
 
+ARG API_URL
+
+ENV VITE_API_URL=${API_URL}
+
 WORKDIR /app
 
 COPY package.json ./
