@@ -14,7 +14,7 @@ import { UserContext } from './context/UserContext';
 
 // Get cupcake data
 let cupcakeStarterData = {};
-await apiAxios.get('/api/cupcake')
+await apiAxios.get('/api/cupcakes')
   .then(res => cupcakeStarterData = res.data.data);
 
 // Get user info
